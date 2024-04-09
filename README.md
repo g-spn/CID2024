@@ -1,2 +1,3 @@
 Code in Place 2024
-WIP
+<br>
+Waiting for acceptance into the program.

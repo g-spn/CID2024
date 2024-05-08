@@ -1,4 +1,5 @@
-The purpose of this git repo is to show the progression of my enrollment in Stanford's Code in Place 2024. 
+The purpose of this git repo is to show the progression of my enrollment in Stanford's Code in Place 2024.
+(sidenote: I will be omitting some assignment challenges due to their simplicity.)
 
 I have previous coding experience from enrolling in CS classes during my undergrad. I am out of touch with coding in general, so I decided to partake in this opportunity to improve my skills in Python. 
 

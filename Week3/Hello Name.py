@@ -6,6 +6,7 @@ def main():
     """
     #Ask for user's name
     uname = input("What is your name?")
+
     #Displays hello + the username
     print("Hello ",uname)
 

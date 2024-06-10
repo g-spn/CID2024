@@ -1,5 +1,12 @@
 # File: Password Strength Checker
 # -----------------------------
+
+"""
+Based on NIST's sp800-63b document
+Appendix A—Strength of Memorized Secrets
+
+
+"""
 """
 Step 1:
     Define Password strenght Criterias
@@ -18,9 +25,44 @@ Step 6(optional):
 
 
 """
+def password_recommendations():
+    #Currently a place holder, at a later date password recommedations or criterias will be posted.
+    print("this is a place holder for password criterias")
+
+def pwd_input():
+    #Request users to input a password
+    pw_2_check = input("Please enter the password you would like to check: ")
+    
+    #ignore - used to help debug program. 
+    #print("This is the users password in pwd_input function:" + str(pw_2_check))
+
+    #return's password to be used for later
+    return pw_2_check
+
+def pwd_lenght(pw_2_check):
+    #Obtain the len of the password as a value
+    pw_lenght = len(pw_2_check)
+
+    #print("function pwd_lenght" + str(pw_lenght))
+
+    return pw_lenght
 
 def main():
-    pass
+    #List password criterias for a strong password
+    #pw_variable used in main
+    #pwd_variable is used for functions
+    password_recommendations()
+
+    #Ask users for password to check
+    #pw_2_check = pwd_input()
+
+    #use to help debug
+    print("Back in main (printing input):" + str(pw_2_check))
+    
+    #check lenght of password
+    pw_lenght = pwd_lenght(pw_2_check)
+    #use to help depug
+    #print("main pw: " + str(pw_lenght))
 
 if __name__ == "__main__":
     main()

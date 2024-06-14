@@ -1,5 +1,6 @@
 # File: Password Strength Checker
 # -----------------------------
+import math
 
 """
 Based on USA Cybersecurity and Infrastructure Security Agency
@@ -21,8 +22,6 @@ Step 5:
 Step 6(optional):
     Calculate the entropy of the password which provides the lenght of time it would take to brute froce
     check users password to see if it's on the top used passwords
-
-
 """
 def password_recommendations():
     #Currently a place holder, at a later date password recommedations or criterias will be posted.
@@ -45,7 +44,6 @@ def pwd_lenght(pw_2_check):
     #print("function pwd_lenght" + str(pw_lenght))
 
     return pw_lenght
-
 
 def pwd_special_char(pw_2_check):
     
@@ -71,7 +69,6 @@ def pwd_lowercase_char(pw_2_check):
         #else:
             #print(i)
     return(False)        
-    
 
 def pwd_uppercase_char(pw_2_check):
     # Checks to see if string contains uppercase characters
@@ -99,7 +96,12 @@ def pw_strenght_display(pw_2_check, pw_lenght ,pw_lowercase_char, pw_numerical_c
     #displays weak, good, strong, very strong
     pw_count_true = sum([pw_lowercase_char, pw_numerical_char, pw_uppercase_char, pw_special_char])
     #print(pw_count_true) #debug: check value of all true/false values.
+    
+    #Puts common password in a list
+    common_pw_list = check_for_common_pw("Final Project\\10k-most-common-pw.txt")
 
+    if pw_2_check in common_pw_list:
+        print("The password you entered is a common password") 
     if (pw_lenght > 37 and pw_nums_only == True) or (pw_lenght > 25 and pw_nums_only == False ) or (pw_lenght > 22  and pw_count_true == 2 ) or (pw_lenght > 19  and pw_count_true >= 3 ):
         print("Password strenght: Very Strong")
     elif(pw_lenght > 18 and pw_nums_only == True) or (pw_lenght > 12 and pw_lenght <= 24 and pw_count_true == 1 and pw_nums_only == False) or (pw_lenght > 10  and pw_count_true == 2 ) or (pw_lenght > 10  and pw_count_true == 3 ) or (pw_lenght > 9  and pw_count_true == 4 ):
@@ -108,11 +110,45 @@ def pw_strenght_display(pw_2_check, pw_lenght ,pw_lowercase_char, pw_numerical_c
         print("Password Strenght: Good")
     else:
         print("Password Strenght: Weak")
-
-
+    
+    # Calculates the entropy of the passwords.
+    pw_entropy = pwd_entropy(pw_lenght ,pw_lowercase_char, pw_numerical_char, pw_uppercase_char, pw_special_char)
+    print(f"Your password entropy is {pw_entropy:.1f}") 
 
 def pwd_entropy(pw_lenght ,pw_lowercase_char, pw_numerical_char, pw_uppercase_char, pw_special_char):
-    pass
+    #Purpose is to calculate entropy
+    #initalizing the variable
+    character_pool_size = 0
+    #If the following is true it increase character pool size variable
+    if (pw_lowercase_char == True):
+        #print("added 26 to pw_lowercase_char variable")
+        character_pool_size += 26
+    if (pw_numerical_char == True):
+        #print("added 10 to pw_lowercase_char variable")
+        character_pool_size += 10
+    if (pw_uppercase_char == True):
+        #print("added 26 to pw_lowercase_char variable")
+        character_pool_size += 26
+    if (pw_special_char == True):
+        #print("added 32 to pw_lowercase_char variable")
+        character_pool_size += 32
+    #print(character_pool_size) 
+    #formula to calcuate entropy
+    pw_entropy = pw_lenght * math.log2(character_pool_size)
+    return pw_entropy
+
+def check_for_common_pw(filepath):
+    #creates a list for appending words to list
+    common_pw_list = []
+    #command to open file and be read
+    #each line read is erase and added to list
+    with open(filepath, 'r') as file_reader:
+        for line in file_reader.readlines():
+            cleaned_line = line.strip()
+            if cleaned_line != '':
+                common_pw_list.append(cleaned_line)
+
+    return common_pw_list
 
 def main():
     #   List password criterias for a strong password
@@ -124,7 +160,7 @@ def main():
 
     # Ask users for password to check
     pw_2_check = pwd_input()
-    print(f"Inputted password: {pw_2_check}") # use to help debug
+    #print(f"Inputted password: {pw_2_check}") # use to help debug
     
     # check lenght of password
     pw_lenght = pwd_lenght(pw_2_check)
@@ -146,12 +182,10 @@ def main():
     pw_numerical_char= pwd_numerical_char(pw_2_check)
     #print(f"Contains a number : {pw_numerical_char}") # debug: check for results of pw_numerical_char
 
-    # display password strenght 
+    # display password strenght and Entropy
     pw_strenght_display(pw_2_check, pw_lenght , pw_lowercase_char, pw_numerical_char, pw_uppercase_char, pw_special_char)
 
-    # Calculates the entropy of the passwords.
-    pw_entropy = pwd_entropy(pw_lenght ,pw_lowercase_char, pw_numerical_char, pw_uppercase_char, pw_special_char)
-    print(f"Your password entropy is {pw_entropy}") 
+
 
 
 if __name__ == "__main__":

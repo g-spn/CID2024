@@ -15,7 +15,7 @@ Step 3:
     Evaluate the password
     Create multiply function for each seperate criteria
 Step 4: 
-    Combine resule from evaluating difference criterias
+    Combine results from evaluating difference criterias
 Step 5:
     Display feedback
 Step 6(optional):
@@ -64,14 +64,37 @@ def pwd_special_char(pw_2_check):
 
 def pwd_lowercase_char(pw_2_check):
     # Checks to see if string contains lowercase characters
-    pass
+    for i in pw_2_check:
+        if i.islower():
+            #print(f"{i} is lower case")
+            return(True)
+        #else:
+            #print(i)
+    return(False)        
+    
 
 def pwd_uppercase_char(pw_2_check):
     # Checks to see if string contains uppercase characters
-    pass
+    for i in pw_2_check:
+        if i.isupper():
+            #print(f"{i} is upper case")
+            return(True)
+        #else:
+            #print(i)
+    return(False)        
 
 def pwd_numerical_char(pw_2_check):
     # Checks to see if string contains numerical characters
+    for i in pw_2_check:
+        if i.isnumeric():
+            #print(f"{i} is a number")
+            return(True)
+        #else:
+            #print(i)
+    return(False)
+
+
+def pwd_entropy()
     pass
 
 def main():
@@ -84,23 +107,33 @@ def main():
 
     # Ask users for password to check
     pw_2_check = pwd_input()
-
-    # use to help debug
-    print("Back in main (printing input):" + str(pw_2_check))
+    print(f"Inputted password: {pw_2_check}") # use to help debug
     
     # check lenght of password
     pw_lenght = pwd_lenght(pw_2_check)
-    
-    # use to help depug
-    print("main pw: " + str(pw_lenght))
+    #print("main pw: " + str(pw_lenght)) # debug: displays pw lenght
     
     # check password string contains a special character
     pw_special_char = pwd_special_char(pw_2_check)
-    
-    # debug : check for results of special character
-    #print(pw_special_char)
+    #print(f"Contains Special is : {pw_special_char}") # debug: check for results of pw_special_char
 
+    #check password string contains lower case
+    pw_lowercase_char = pwd_lowercase_char(pw_2_check)
+    #print(f"Contains lower is :{pw_lowercase_char}") # debug: check for results of pw_lowercase_char
     
+    #check password string contains upper case
+    pw_uppercase_char = pwd_uppercase_char(pw_2_check)
+    #print(f"Contains upper is : {pw_uppercase_char} ") # debug: check for results of pw_uppercase_char
+
+    #check password string contains numerical char
+    pw_numerical_char= pwd_numerical_char(pw_2_check)
+    #print(f"Contains a number : {pw_numerical_char}") # debug: check for results of pw_numerical_char
+
+
+    #Calculates the entropy of the passwords.
+    #pw_entropy = pwd_entropy()
+    #print(f"Your password entropy is {pw_entropy}") 
+
 
 if __name__ == "__main__":
     main()

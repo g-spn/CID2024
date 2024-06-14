@@ -93,8 +93,25 @@ def pwd_numerical_char(pw_2_check):
             #print(i)
     return(False)
 
+def pw_strenght_display(pw_2_check, pw_lenght ,pw_lowercase_char, pw_numerical_char, pw_uppercase_char, pw_special_char):
+    #Bolean value for number only passwords
+    pw_nums_only = pw_2_check.isnumeric()
+    #displays weak, good, strong, very strong
+    pw_count_true = sum([pw_lowercase_char, pw_numerical_char, pw_uppercase_char, pw_special_char])
+    #print(pw_count_true) #debug: check value of all true/false values.
 
-def pwd_entropy()
+    if (pw_lenght > 37 and pw_nums_only == True) or (pw_lenght > 25 and pw_nums_only == False ) or (pw_lenght > 22  and pw_count_true == 2 ) or (pw_lenght > 19  and pw_count_true >= 3 ):
+        print("Password strenght: Very Strong")
+    elif(pw_lenght > 18 and pw_nums_only == True) or (pw_lenght > 12 and pw_lenght <= 24 and pw_count_true == 1 and pw_nums_only == False) or (pw_lenght > 10  and pw_count_true == 2 ) or (pw_lenght > 10  and pw_count_true == 3 ) or (pw_lenght > 9  and pw_count_true == 4 ):
+        print("Password Strenght: Strong")
+    elif(pw_lenght > 14 and pw_nums_only == True) or (pw_lenght > 10 and pw_lenght <= 12 and pw_count_true == 1 and pw_nums_only == False) or (pw_lenght > 8  and pw_count_true == 2 ) or (pw_lenght > 8  and pw_count_true == 3 ) or (pw_lenght > 7  and pw_count_true == 4 ):
+        print("Password Strenght: Good")
+    else:
+        print("Password Strenght: Weak")
+
+
+
+def pwd_entropy(pw_lenght ,pw_lowercase_char, pw_numerical_char, pw_uppercase_char, pw_special_char):
     pass
 
 def main():
@@ -129,10 +146,12 @@ def main():
     pw_numerical_char= pwd_numerical_char(pw_2_check)
     #print(f"Contains a number : {pw_numerical_char}") # debug: check for results of pw_numerical_char
 
+    # display password strenght 
+    pw_strenght_display(pw_2_check, pw_lenght , pw_lowercase_char, pw_numerical_char, pw_uppercase_char, pw_special_char)
 
-    #Calculates the entropy of the passwords.
-    #pw_entropy = pwd_entropy()
-    #print(f"Your password entropy is {pw_entropy}") 
+    # Calculates the entropy of the passwords.
+    pw_entropy = pwd_entropy(pw_lenght ,pw_lowercase_char, pw_numerical_char, pw_uppercase_char, pw_special_char)
+    print(f"Your password entropy is {pw_entropy}") 
 
 
 if __name__ == "__main__":

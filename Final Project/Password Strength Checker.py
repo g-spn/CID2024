@@ -5,9 +5,7 @@ import math
 """
 Based on USA Cybersecurity and Infrastructure Security Agency
 Source: https://www.cisa.gov/secure-our-world/use-strong-passwords
-"""
 
-"""
 Step 1:
     Define Password strenght Criterias
 Step 2:
@@ -24,8 +22,14 @@ Step 6(optional):
     check users password to see if it's on the top used passwords
 """
 def password_recommendations():
-    #Currently a place holder, at a later date password recommedations or criterias will be posted.
-    print("this is a place holder for password criterias")
+    # recommendation for strong passwords
+    print("How to make a strong password")
+    print(" Type 1: Random string \n	A string mixed-case letters, numbers, symbols")
+    print("	A minimum 16 characters, longer is better")
+    print(" examples:\n	Great: cXmnZK65rf*&DaaD \n	Amazing: Yuc8$RikA34%ZoPPao98t \n")
+    print(" Type 2: Passphrases\n examples")
+    print("	Good: HorsePurpleHatRun \n	Great: HorsePurpleHatRunBay \n	Amazing: Horse Purple Hat Run Bay Lifting\n")
+    print("Entropy:\n	Weak: 	0-49\n	Good: 	50-70\n	Strong: 70-120\n	Very Strong: 120+ \n")
 
 def pwd_input():
     #Request users to input a password
@@ -156,34 +160,45 @@ def main():
     #   pwd_variable is used for functions
     
     #   Print's guidelines for strong passwords
-    #password_recommendations()
+    print("Password Strenght Checker Program")
+    print("Created by G-spn\n\n")
+    password_recommendations()
 
+    pw_2_check = None
+    while True:
     # Ask users for password to check
-    pw_2_check = pwd_input()
-    #print(f"Inputted password: {pw_2_check}") # use to help debug
-    
-    # check lenght of password
-    pw_lenght = pwd_lenght(pw_2_check)
-    #print("main pw: " + str(pw_lenght)) # debug: displays pw lenght
-    
-    # check password string contains a special character
-    pw_special_char = pwd_special_char(pw_2_check)
-    #print(f"Contains Special is : {pw_special_char}") # debug: check for results of pw_special_char
+        
+        if pw_2_check == '':
+            break
+        else:
+            pw_2_check = pwd_input()
+            #print(f"Inputted password: {pw_2_check}") # use to help debug
+            
+            # check lenght of password
+            pw_lenght = pwd_lenght(pw_2_check)
+            #print("main pw: " + str(pw_lenght)) # debug: displays pw lenght
+            
+            # check password string contains a special character
+            pw_special_char = pwd_special_char(pw_2_check)
+            #print(f"Contains Special is : {pw_special_char}") # debug: check for results of pw_special_char
 
-    #check password string contains lower case
-    pw_lowercase_char = pwd_lowercase_char(pw_2_check)
-    #print(f"Contains lower is :{pw_lowercase_char}") # debug: check for results of pw_lowercase_char
-    
-    #check password string contains upper case
-    pw_uppercase_char = pwd_uppercase_char(pw_2_check)
-    #print(f"Contains upper is : {pw_uppercase_char} ") # debug: check for results of pw_uppercase_char
+            #check password string contains lower case
+            pw_lowercase_char = pwd_lowercase_char(pw_2_check)
+            #print(f"Contains lower is :{pw_lowercase_char}") # debug: check for results of pw_lowercase_char
+            
+            #check password string contains upper case
+            pw_uppercase_char = pwd_uppercase_char(pw_2_check)
+            #print(f"Contains upper is : {pw_uppercase_char} ") # debug: check for results of pw_uppercase_char
 
-    #check password string contains numerical char
-    pw_numerical_char= pwd_numerical_char(pw_2_check)
-    #print(f"Contains a number : {pw_numerical_char}") # debug: check for results of pw_numerical_char
+            #check password string contains numerical char
+            pw_numerical_char= pwd_numerical_char(pw_2_check)
+            #print(f"Contains a number : {pw_numerical_char}") # debug: check for results of pw_numerical_char
 
-    # display password strenght and Entropy
-    pw_strenght_display(pw_2_check, pw_lenght , pw_lowercase_char, pw_numerical_char, pw_uppercase_char, pw_special_char)
+            # display password strenght and Entropy
+            pw_strenght_display(pw_2_check, pw_lenght , pw_lowercase_char, pw_numerical_char, pw_uppercase_char, pw_special_char)
+            
+            pw_2_check = input("Would you like to check another password?(hit enter to stop) ")
+                           
 
 
 
